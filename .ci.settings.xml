@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+   <servers>
+      <server>
+         <id>maven-all-virtual</id>
+         <username>${env.ARTIFACTORY_USER}</username>
+         <password>${env.ARTIFACTORY_TOKEN}</password>
+      </server>
+      <server>
+         <id>maven-dev</id>
+         <username>${env.ARTIFACTORY_USER}</username>
+         <password>${env.ARTIFACTORY_TOKEN}</password>
+      </server>
+   </servers>
+   <pluginGroups>
+      <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+   </pluginGroups>
+   <profiles>
+      <profile>
+         <id>sonar</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <properties>
+            <sonar.host.url>https://sonarqube.split-internal.com</sonar.host.url>
+            <sonar.login>${env.SONAR_TOKEN}</sonar.login>
+            <sonar.ws.timeout>300</sonar.ws.timeout>
+            <sonar.links.ci>https://github.com/splitio/sdk-api/actions</sonar.links.ci>
+            <sonar.links.scm>https://github.com/splitio/sdk-api</sonar.links.scm>
+            <sonar.projectName>sdk-api</sonar.projectName>
+            <sonar.test.exclusions>**/test/**/*.*</sonar.test.exclusions>
+            <sonar.exclusions>**/ai/**/*.*,**/jdbc/**/*.*,**/mpt/**/*.*,**/jcr/**/*.*,**/JDBC*</sonar.exclusions>
+         </properties>
+      </profile>
+   </profiles>
+</settings>

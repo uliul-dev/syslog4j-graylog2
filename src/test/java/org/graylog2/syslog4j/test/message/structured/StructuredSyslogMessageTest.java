@@ -204,14 +204,14 @@ public class StructuredSyslogMessageTest extends TestCase
    public void testCreateMessage1()
    {
       final StructuredSyslogMessage message = new StructuredSyslogMessage("msgId", null, null, null);
-      assertEquals("msgId [0@0]", message.createMessage());
+      assertEquals("msgId -", message.createMessage());
    }
 
    public void testCreateMessage2()
    {
       final StructuredSyslogMessage message =
             new StructuredSyslogMessage("msgId", null, null, "my message");
-      assertEquals("msgId [0@0] my message", message.createMessage());
+      assertEquals("msgId - my message", message.createMessage());
    }
 
    public void testCreateMessage3()

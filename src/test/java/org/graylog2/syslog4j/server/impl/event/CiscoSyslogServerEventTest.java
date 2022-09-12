@@ -111,10 +111,11 @@ public class CiscoSyslogServerEventTest {
         final String message = "<166>%ASA-6-302015: Built inbound UDP connection 23631055 for inside:192.168.19.91/44764 (192.168.19.91/44764) to identity:192.168.249.33/161 (192.168.249.33/161)";
 
         final CiscoSyslogServerEvent event = buildEvent(message);
+        final Date now = new Date();
 
         assertThat(event.getDate())
-                .isInThePast()
-                .isInSameMinuteWindowAs(new Date());
+                .isBeforeOrEqualsTo(now)
+                .isInSameMinuteWindowAs(now);
         assertThat(event.getFacility()).isEqualTo(20);
         assertThat(event.getLevel()).isEqualTo(6);
         assertThat(event.getSequenceNumber()).isEqualTo(0);
